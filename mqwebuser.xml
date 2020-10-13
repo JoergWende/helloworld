@@ -24,7 +24,7 @@
     <basicRegistry id="basic" realm="defaultRealm">
         <!-- 
         This sample defines two users with unencoded passwords
-        and a group, these are used by the role mappings above
+        and a group, these are used by the role mappings above.
         -->
         <user name="mqadmin" password="mqadmin"/>
         <user name="mqreader" password="mqreader"/>
