@@ -2,4 +2,4 @@
     RUN printf "DEFINE QLOCAL(foo) REPLACE\n" > /etc/mqm/my.mqsc \
         && printf "Channels:\n\tMQIBindType=FASTPATH\n" > /etc/mqm/my.ini
     COPY mqwebuser.xml  /etc/mqm/web/installations/Installation1/servers/mqweb/mqwebuser.xml
-    LABEL summary "Custom1 MQ image"
+    LABEL summary "Custom MQ image"
