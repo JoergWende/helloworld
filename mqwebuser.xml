@@ -1,62 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <server>
-    <!-- 
-    Enable features 
-    -->
     <featureManager>
         <feature>appSecurity-2.0</feature>
         <feature>basicAuthenticationMQ-1.0</feature>
     </featureManager>
-
-    <!-- 
-    Roles for the MQ Console 
-    -->
     <enterpriseApplication id="com.ibm.mq.console">
         <application-bnd>
             <security-role name="MQWebAdmin">
-                <group name="MQWebAdminGroup" realm="defaultRealm"/>
+                <group name="MQWebUI" realm="defaultRealm"/>
             </security-role>
-            <security-role name="MQWebAdminRO">
-                <user name="mqreader" realm="defaultRealm"/>
-            </security-role>
-            <security-role name="MQWebUser">
-                <special-subject type="ALL_AUTHENTICATED_USERS"/>
-            </security-role>
-            <security-role name="MFTWebAdmin">
-                <user name="mftadmin" realm="defaultRealm"/>
-            </security-role>
-            <security-role name="MFTWebAdminRO">
-                <user name="mftreader" realm="defaultRealm"/>
-            </security-role>			
         </application-bnd>
     </enterpriseApplication>
-
-    <!-- 
-    Roles for the MQ REST API 
-    -->
     <enterpriseApplication id="com.ibm.mq.rest">
         <application-bnd>
             <security-role name="MQWebAdmin">
-                <group name="MQWebAdminGroup" realm="defaultRealm"/>
-            </security-role>
-            <security-role name="MQWebAdminRO">
-                <user name="mqreader" realm="defaultRealm"/>
+                <group name="MQWebUI" realm="defaultRealm"/>
             </security-role>
             <security-role name="MQWebUser">
-                <special-subject type="ALL_AUTHENTICATED_USERS"/>
+                <group name="MQWebMessaging" realm="defaultRealm"/>
             </security-role>
-            <security-role name="MFTWebAdmin">
-                <user name="mftadmin" realm="defaultRealm"/>
-            </security-role>
-            <security-role name="MFTWebAdminRO">
-                <user name="mftreader" realm="defaultRealm"/>
-            </security-role>			
         </application-bnd>
     </enterpriseApplication>
-
-    <!-- 
-    Sample Basic Registry 
-    -->
     <basicRegistry id="basic" realm="defaultRealm">
         <!-- 
         This sample defines two users with unencoded passwords
@@ -66,21 +30,10 @@
         <user name="mqreader" password="mqreader"/>
         <user name="mftadmin" password="mftadmin"/>
         <user name="mftreader" password="mftreader"/>		
-        <group name="MQWebAdminGroup">
+        <group name="MQWebUI">
            <member name="mqadmin"/>
         </group>
     </basicRegistry>
-    
-    <variable name="httpsPort" value="9443"/>
     <variable name="httpHost" value="*"/>
-    
-    <sslDefault sslRef="mqDefaultSSLConfig"/>
-                    
-    <keyStore id="defaultKeyStore" location="key.jks" type="JKS" password="password"/>
-    <keyStore id="defaultTrustStore" location="trust.jks" type="JKS" password="password"/>
-    <ssl id="thisSSLConfig" clientAuthenticationSupported="true" keyStoreRef="defaultKeyStore" serverKeyAlias="default" trustStoreRef="defaultTrustStore" sslProtocol="TLSv1.2"/>
-    <sslDefault sslRef="thisSSLConfig"/>    
-   
-    <variable name="mqRestCorsAllowedOrigins" value="https://localhost:9883"/>
-    <variable name="mqRestCorsMaxAgeInSeconds" value="120"/>
+    <include location="tls.xml"/>
 </server>
