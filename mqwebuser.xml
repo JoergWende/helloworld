@@ -26,7 +26,7 @@
         This sample defines two users with unencoded passwords
         and a group, these are used by the role mappings above.
         -->
-        <user name="mqadmin" password="mqadmin"/>
+        <user name="mqadmin" password="passw0rd"/>
         <user name="mqreader" password="mqreader"/>
         <user name="mftadmin" password="mftadmin"/>
         <user name="mftreader" password="mftreader"/>		
